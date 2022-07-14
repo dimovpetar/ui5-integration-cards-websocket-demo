@@ -1,0 +1,55 @@
+{
+	"sap.app": {
+		"type": "card",
+		"id": "card.demo.websockets2"
+	},
+	"sap.card": {
+		"extension": "./DataExtension",
+		"configuration": {
+			"destinations": {
+				"ProductsService": {
+					"name": "ProductsService",
+					"defaultUrl": "ws://localhost:3000"
+				}
+			},
+			"parameters": {
+				"maxItems": {
+					"value": 4,
+					"type": "integer",
+					"label": "Maximum Items",
+					"description": "Defines how many items will be displayed at most."
+				}
+			}
+		},
+		"type": "List",
+		"header": {
+			"title": "Live Orders (Bad Example)",
+			"subTitle": "Updated at {= format.dateTime(${/items/0}.LastOrderedAt, { format: 'Hms' }) }",
+			"icon": {
+				"src": "sap-icon://activities"
+			},
+			"status": {
+				"text": {
+					"format": {
+						"translationKey": "i18n>CARD.COUNT_X_OF_Y",
+						"parts": [
+							"parameters>/visibleItems",
+							"/count"
+						]
+					}
+				}
+			}
+		},
+		"content": {
+			"data": {
+				"path": "/items"
+			},
+			"item": {
+				"title": "{Name}",
+				
+				"description": "Ordered at {= format.dateTime(${LastOrderedAt}, { format: 'Hms' }) }"
+			},
+			"maxItems": "{parameters>/maxItems/value}"
+		}
+	}
+}

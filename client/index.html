@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Card Test Page</title>
+	<script src="https://ui5.sap.com/resources/sap-ui-integration.js"
+		id="sap-ui-bootstrap"
+		data-sap-ui-compatVersion="edge"
+		data-sap-ui-theme="sap_fiori_3">
+	</script>
+	<style>
+		.card {
+			width: 400px;
+			margin-right: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<ui-integration-card class="card" manifest="./card1/manifest.json"></ui-integration-card>
+	<ui-integration-card class="card" manifest="./card2/manifest.json"></ui-integration-card>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+	"sap.app": {
+		"type": "card",
+		"id": "card.demo.websockets"
+	},
+	"sap.card": {
+		"extension": "./DataExtension",
+		"configuration": {
+			"destinations": {
+				"ProductsServiceByCategory": {
+					"name": "ProductsServiceByCategory",
+					"defaultUrl": "ws://localhost:3000/byCategory"
+				}
+			},
+			"parameters": {
+				"maxItems": {
+					"value": 10,
+					"type": "integer",
+					"label": "Maximum Items",
+					"description": "Defines how many items will be displayed at most."
+				}
+			}
+		},
+
+		"type": "List",
+		"header": {
+			"title": "Live Orders by Category",
+			"subTitle": "Updated at {= format.dateTime(${/updateTime}, { format: 'Hms' }) }",
+			"icon": {
+				"src": "sap-icon://activities"
+			},
+			"status": {
+				"text": {
+					"format": {
+						"translationKey": "i18n>CARD.COUNT_X_OF_Y",
+						"parts": [
+							"parameters>/visibleItems",
+							"/categoriesCount"
+						]
+					}
+				}
+			}
+		},
+		"content": {
+			"data": {
+				"path": "/salesPerCategory"
+			},
+			"item": {
+				"title": "{Category}",
+				"info": {
+					"value": "{Orders} Orders"
+				},
+				"actions": [{
+					"type": "Navigation",
+					"parameters": {
+						"category": "{Category}"
+					}
+				}]
+			},
+			"maxItems": "{parameters>/maxItems/value}"
+		}
+	}
+}
